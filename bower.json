@@ -1,0 +1,17 @@
+{
+  "name": "chat",
+  "description": "",
+  "main": "",
+  "authors": [
+    "emrejz <emre.kayacan@msn.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "chat",
+    "nodejs"
+  ],
+  "homepage": "https://github.com/emrejz/chitchat",
+  "dependencies": {
+    "angular": "^1.7.5"
+  }
+}
