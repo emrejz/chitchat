@@ -10,6 +10,9 @@ const passport=require('passport');
 //express-session
 const session=require('express-session');
 
+//redis-store
+const redisStore=require('./helpers/redisStore');
+
 
 const dotenv=require('dotenv');
 dotenv.config();
@@ -38,8 +41,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
-//express-session
+//express-session-redisStore
 app.use(session({
+  store:  redisStore,
   secret: process.env.SESSION_SECRET_KEY,
   resave: false,
   saveUninitialized: true,
