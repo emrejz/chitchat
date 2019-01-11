@@ -9,13 +9,11 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.GOOGLE_LOGIN_CALLBACK_URL
 },((accessToken,refreshToken,profile,done)=>{
     const data=profile._json;
-
-    console.log(data);
     User.findOrCreate(
         {'googleId':data.id},
         {name:data.name.givenName,
         surname: data.name.familyName,
-        profilePhotoUrl:data.image.url,
+        profilePhotoUrl:data.image.url+"0",
         email:data.emails[0].value
     },
 
@@ -25,6 +23,9 @@ passport.use(new GoogleStrategy({
 })));
 
 passport.serializeUser((user,done)=>{
+    done(null,user)
+});
+passport.deserializeUser((user,done)=>{
     done(null,user)
 });
 

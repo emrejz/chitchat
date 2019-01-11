@@ -14,7 +14,7 @@ router.get('/google/callback',passportGoogle.authenticate(
         failureRedirect: '/'
     }),
     (req,res)=>{
-        res.redirect('chat')
+        res.redirect('/chat')
     }
     );
 
