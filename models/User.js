@@ -1,5 +1,6 @@
 const mongose=require('mongoose');
 const Schema=mongose.Schema;
+const findOrCreate=require('mongoose-find-or-create');
 
 const userSchema=new Schema({
     googleId:{
@@ -8,7 +9,8 @@ const userSchema=new Schema({
     },
     name:String,
     surname:String,
-    profilePhotoUrl:String
+    profilePhotoUrl:String,
+    email:String
 });
-
+userSchema.plugin(findOrCreate);
 module.exports=mongose.model('user',userSchema);
