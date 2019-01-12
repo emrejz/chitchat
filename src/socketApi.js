@@ -9,6 +9,7 @@ const socketApi={
 
 // libs-online users
 const Users = require('./lib/onlineUsers');
+const Rooms = require('./lib/Rooms');
 
 
 // socket Authorization
@@ -28,6 +29,10 @@ io.on('connection',socket=>{
     Users.list(users => {
 		io.emit('onlineList',users);
 	});
+
+    socket.on('newRoom',(roomName)=>{
+        Rooms.upsert(roomName);
+    });
 
     socket.on('disconnect',()=>{
 

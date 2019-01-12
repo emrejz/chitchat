@@ -1,10 +1,7 @@
-const redis = require('redis');
+const redisClint=require("../lib/redisClient");
 
 function Users() {
-	this.client = redis.createClient({
-		host: process.env.REDIS_URI,
-		port: process.env.REDIS_PORT,
-	});
+	this.client = redisClint.getClient();
 }
 
 module.exports = new Users();
