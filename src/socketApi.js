@@ -4,10 +4,15 @@ const io=socketio();
 
 const socketApi={
     io
+
 };
 
+// libs-online users
+const Users = require('./lib/onlineUsers');
+
+
 // socket Authorization
-io.use(socketAuthorization)
+io.use(socketAuthorization);
 
 //redis adapter
 const redisAdapter = require('socket.io-redis');
@@ -17,9 +22,22 @@ io.adapter(redisAdapter({
     }));
 
 io.on('connection',socket=>{
-    console.log("emre");
+
     
-    console.log("user :"+socket.request.user);
+    console.log("user :"+socket.request.user.name);
+    Users.upsert(socket.id, socket.request.user);
+    Users.list(users => {
+		console.log(users);
+	});
+
+    socket.on('disconnect',()=>{
+        console.log("emre");
+        
+        Users.remove(socket.request.user.googleId)
+        Users.list(users => {
+            console.log(users);
+        });
+    })
     
 });
 module.exports=socketApi;

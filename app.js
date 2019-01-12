@@ -47,7 +47,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET_KEY,
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge:10000} // secure: true https de çalışıyorn localde olduğumuz için atamda yapamıyoruz
+  cookie: { maxAge:100000} // secure: true https de çalışıyorn localde olduğumuz için atamda yapamıyoruz
 }));
 
 //passport.js
