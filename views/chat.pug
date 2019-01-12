@@ -32,10 +32,10 @@ block content
                   span.preview &nbsp;
           .bottom
             button(ng-click="newRoom()") New Room
-        .right(ng-show="chatClicked")
+        .right(ng-show="roomClicked")
           .top
             span
-              span.name {{ chatName }}
+              span.name {{ chatName }} 
 
           .loading(ng-show="loadingMessages") Loading...
           .chat.active-chat(ng-show="!loadingMessages")

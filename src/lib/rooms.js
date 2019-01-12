@@ -1,4 +1,5 @@
 const redisClint=require("../lib/redisClient");
+const shortId=require("shortid");
 
 function Rooms() {
 	this.client = redisClint.getClient();
@@ -7,12 +8,14 @@ function Rooms() {
 module.exports = new Rooms();
 
 
-Rooms.prototype.upsert = function (roomsName) {
+Rooms.prototype.upsert = function (name) {
+    const newId=shortId.generate();
 	this.client.hset(
 		'rooms',
-		roomsName,
+		"@Room:"+newId,
 		JSON.stringify({
-			name:roomsName,
+            id:"@Room:"+newId,
+            name,
 			when: Date.now()
 		}),
 		err => {
