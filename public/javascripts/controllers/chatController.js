@@ -4,6 +4,8 @@ app.controller('chatController',['$scope',($scope)=>{
 	$scope.activeTab = 2;
 	$scope.roomClicked = false;
 	$scope.roomName = "";
+	$scope.message = "";
+	$scope.roomId = "";
 
 
 	
@@ -18,8 +20,20 @@ app.controller('chatController',['$scope',($scope)=>{
 		$scope.roomList = rooms;
 		$scope.$apply();
 	});
+
+	$scope.newMessage=()=>{
+		socket.emit('newMessage',{
+			message:$scope.message,
+			roomId:$scope.roomId
+		})
+		$scope.message = "";
+	
+	}
+
 	$scope.switchRoom=(room)=>{
 		$scope.roomClicked = true;
+		$scope.roomId = room.id;
+
 		$scope.chatName = room.name;
 
 	}
