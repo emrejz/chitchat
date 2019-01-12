@@ -1,9 +1,14 @@
 const socketio=require('socket.io');
+const socketAuthorization=require('../middleware/socketAuthorization');
 const io=socketio();
 
 const socketApi={
     io
 };
+
+// socket Authorization
+io.use(socketAuthorization)
+
 //redis adapter
 const redisAdapter = require('socket.io-redis');
 io.adapter(redisAdapter({ 
@@ -12,7 +17,9 @@ io.adapter(redisAdapter({
     }));
 
 io.on('connection',socket=>{
-    console.log("user connected");
+    console.log("emre");
+    
+    console.log("user :"+socket.request.user);
     
 });
 module.exports=socketApi;
