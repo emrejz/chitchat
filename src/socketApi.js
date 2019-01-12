@@ -24,7 +24,10 @@ io.adapter(redisAdapter({
 
 io.on('connection',socket=>{
     
-    console.log("user :"+socket.request.user.name);
+    Rooms.list(room=>{
+        console.log(room);
+        
+    });
     Users.upsert(socket.id, socket.request.user);
     Users.list(users => {
 		io.emit('onlineList',users);
@@ -33,7 +36,7 @@ io.on('connection',socket=>{
     socket.on('newRoom',(roomName)=>{
         Rooms.upsert(roomName);
     });
-
+    
     socket.on('disconnect',()=>{
 
         Users.remove(socket.request.user.googleId)
