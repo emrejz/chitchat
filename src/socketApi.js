@@ -22,20 +22,19 @@ io.adapter(redisAdapter({
     }));
 
 io.on('connection',socket=>{
-
     
     console.log("user :"+socket.request.user.name);
     Users.upsert(socket.id, socket.request.user);
     Users.list(users => {
-		console.log(users);
+		io.emit('onlineList',users);
 	});
 
     socket.on('disconnect',()=>{
-        console.log("emre");
-        
+
         Users.remove(socket.request.user.googleId)
         Users.list(users => {
-            console.log(users);
+		io.emit('onlineList',users);
+            
         });
     })
     

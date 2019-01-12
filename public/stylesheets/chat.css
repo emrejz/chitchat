@@ -433,6 +433,7 @@ ul,li{
 }
 
 .bottom{
+    margin-bottom: 0px;
     text-align: center;
     padding-top: 16px
 }
