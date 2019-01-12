@@ -1,5 +1,6 @@
 app.controller('chatController',['$scope',($scope)=>{
     $scope.onlineList = [];
+    $scope.roomList = [];
 	$scope.activeTab = 2;
 
 	
@@ -7,6 +8,11 @@ app.controller('chatController',['$scope',($scope)=>{
 
     socket.on('onlineList', users => {
 		$scope.onlineList = users;
+		$scope.$apply();
+	});
+	socket.on('roomList', rooms => {
+		
+		$scope.roomList = rooms;
 		$scope.$apply();
 	});
 

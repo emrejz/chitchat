@@ -12,7 +12,7 @@ Rooms.prototype.upsert = function (roomsName) {
 		'rooms',
 		roomsName,
 		JSON.stringify({
-			room:roomsName,
+			name:roomsName,
 			when: Date.now()
 		}),
 		err => {
@@ -34,7 +34,8 @@ Rooms.prototype.list = function (callback) {
 		for (let room in rooms){
 			roomList.push(JSON.parse(rooms[room]));
 		}
-
+     
+        
 		return callback(roomList);
 	})
 };
