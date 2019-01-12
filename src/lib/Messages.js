@@ -1,5 +1,6 @@
 const redisClint=require("../lib/redisClient");
 const shortId=require("shortid");
+const _=require("lodash");
 
 function Messages() {
 	this.client = redisClint.getClient();
@@ -40,6 +41,6 @@ Messages.prototype.list = function (roomId,callback) {
 		}
      
         
-		return callback(messageList);
+		return callback(_orderBy(messageList,'when',"asc"));
 	})
 };
