@@ -41,6 +41,6 @@ Messages.prototype.list = function (roomId,callback) {
 		}
      
         
-		return callback(_orderBy(messageList,'when',"asc"));
+		return callback(_.orderBy(messageList,'when',"asc"));
 	})
 };

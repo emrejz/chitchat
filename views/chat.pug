@@ -39,6 +39,7 @@ block content
 
           .loading(ng-show="loadingMessages") Loading...
           .chat.active-chat(ng-show="!loadingMessages")
+            
             .bubble(
               ng-repeat="data in messages[roomId]",
               ng-class="{false: 'you', true: 'me'}[data.userId == user._id]"
@@ -52,5 +53,6 @@ block content
 
 append javascripts
   script(src="/socket.io/socket.io.js")
+  script(src="/javascripts/services/chatFactory.js")
  
   script(src="/javascripts/controllers/chatController.js")
