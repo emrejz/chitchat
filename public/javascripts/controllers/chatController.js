@@ -17,8 +17,11 @@ app.controller('chatController',['$scope',($scope)=>{
 	});
 
 		$scope.newRoom=()=>{
-			let randomName=Math.random().toString(36).substring(7);
-			socket.emit('newRoom',randomName);
+		//	let randomName=Math.random().toString(36).substring(7);
+			let roomName=window.prompt("enter room name");
+			if(roomName!=="" && roomName!==null){
+			socket.emit('newRoom',roomName);
+								}
 		};
 
 	$scope.changeTab = tab => {
