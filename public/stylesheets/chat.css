@@ -367,6 +367,10 @@ ul,li{
     -webkit-animation-name: slideFromLeft;
     animation-name: slideFromLeft;
 }
+.container .right .bubble.you span{
+    text-align: left !important;
+    
+}
 .container .right .bubble.you:before {
     left: -3px;
     background-color: var(--blue);
